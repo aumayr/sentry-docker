@@ -66,9 +66,7 @@ SENTRY_OPTIONS = {
     'mail.use-tls': config('SENTRY_EMAIL_USE_TLS', default=False, cast=bool),
     'mail.from': config('SENTRY_SERVER_EMAIL', default='root@localhost'),
     'redis.clusters': {
-        'default': {
-            'hosts': nydus_config('SENTRY_REDIS_TSDBS'),
-        }
+        'default': nydus_config('SENTRY_REDIS_TSDBS'),
     }
 }
 
@@ -107,7 +105,6 @@ SENTRY_USE_REDIS_BUFFERS = config('SENTRY_USE_REDIS_BUFFERS', default=False, cas
 
 if SENTRY_USE_REDIS_BUFFERS:
     SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
-    SENTRY_REDIS_OPTIONS = nydus_config('SENTRY_REDIS_BUFFERS')
     SENTRY_CACHE = 'sentry.cache.redis.RedisCache'
 
 #######################
